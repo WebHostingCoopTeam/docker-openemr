@@ -1,32 +1,16 @@
 #name of container: docker-openemr
 #versison of container: 0.3.1
-FROM quantumobject/docker-baseimage:15.04
-MAINTAINER Angel Rodriguez "angel@quantumobject.com"
+#FROM quantumobject/docker-baseimage:15.04
+#MAINTAINER Angel Rodriguez "angel@quantumobject.com"
+FROM ubuntu:xenial
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && apt-get install -y -q apache2 \
-                                            php5 \
-                                            libapache2-mod-php5 \
-                                            libdate-calc-perl \
-                                            libdbd-mysql-perl \
-                                            libhtml-parser-perl \
-                                            libdbi-perl \
-                                            libwww-mechanize-perl \
-                                            libxml-parser-perl \
-                                            libtiff-tools \
-                                            php5-mysql \
-                                            php5-cli \
-                                            php5-gd \
-                                            php5-xsl \
-                                            php5-curl \
-                                            php5-mcrypt \
-                                            php-soap \
-                                            imagemagick \
-                                            php5-json \
+                                            gdebi \
                                             wget \
                                       && cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
-                                      && dpkg -i openemr-php7_5.0.0-1_all.deb \
+                                      && gdebi openemr-php7_5.0.0-1_all.deb \
                                       && apt-get clean \
                                       && rm -rf /tmp/* /var/tmp/* \
                                       && rm -rf /var/lib/apt/lists/*
