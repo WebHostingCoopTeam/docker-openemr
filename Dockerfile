@@ -24,6 +24,9 @@ RUN apt-get update && apt-get install -y -q apache2 \
                                             php-soap \
                                             imagemagick \
                                             php5-json \
+                                            wget \
+                                      && cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
+                                      && dpkg -i openemr-php7_5.0.0-1_all.deb \
                                       && apt-get clean \
                                       && rm -rf /tmp/* /var/tmp/* \
                                       && rm -rf /var/lib/apt/lists/*
