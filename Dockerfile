@@ -7,24 +7,24 @@ FROM ubuntu:xenial
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-&& DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
-gdebi \
-wget \
-locales \
-&& cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
-&& DEBIAN_FRONTEND=noninteractive gdebi openemr-php7_5.0.0-1_all.deb \
-&& update-locale \
-&& DEBIAN_FRONTEND=noninteractive apt-get clean \
-&& rm -rf /tmp/* /var/tmp/* \
-&& rm -rf /var/lib/apt/lists/*
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
+  gdebi \
+  wget \
+  locales \
+  && cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
+  && DEBIAN_FRONTEND=noninteractive gdebi openemr-php7_5.0.0-1_all.deb \
+  && update-locale \
+  && DEBIAN_FRONTEND=noninteractive apt-get clean \
+  && rm -rf /tmp/* /var/tmp/* \
+  && rm -rf /var/lib/apt/lists/*
 
 #General variable definition....
 ##startup scripts
 COPY php.ini /etc/php5/apache2/php.ini
 COPY apache2.conf /etc/apache2/apache2.conf
 
-RUN cp /var/log/cron/config /var/log/apache2/ \
-    && chown -R www-data /var/log/apache2
+# RUN cp /var/log/cron/config /var/log/apache2/
+RUN chown -R www-data /var/log/apache2
 
 #backup or keep data integrity ..
 ##scritp that can be running from the outside using docker exec tool ...
