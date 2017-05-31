@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y -q apache2 \
                                             wget \
                                       && cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
                                       && gdebi openemr-php7_5.0.0-1_all.deb \
+                                      && update-locale \
                                       && apt-get clean \
                                       && rm -rf /tmp/* /var/tmp/* \
                                       && rm -rf /var/lib/apt/lists/*
@@ -20,27 +21,8 @@ RUN apt-get update && apt-get install -y -q apache2 \
 COPY php.ini /etc/php5/apache2/php.ini
 COPY apache2.conf /etc/apache2/apache2.conf
 
-#Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't
-#run it again ... use for conf for service ... when run the first time ...
-
-RUN mkdir -p /etc/my_init.d
-COPY startup.sh /etc/my_init.d/startup.sh
-RUN chmod +x /etc/my_init.d/startup.sh
-
-# to add apache2 deamon to runit
-RUN mkdir -p /etc/service/apache2  /var/log/apache2 ; sync 
-COPY apache2.sh /etc/service/apache2/run
-RUN chmod +x /etc/service/apache2/run \
-    && cp /var/log/cron/config /var/log/apache2/ \
+RUN cp /var/log/cron/config /var/log/apache2/ \
     && chown -R www-data /var/log/apache2
-
-#pre-config scritp for different service that need to be run when container image is create
-#maybe include additional software that need to be installed ... with some service running ... like example mysqld
-
-COPY pre-conf.sh /sbin/pre-conf
-RUN chmod +x /sbin/pre-conf ; sync  \
-&& /bin/bash -c /sbin/pre-conf \
-&& rm /sbin/pre-conf
 
 #backup or keep data integrity ..
 ##scritp that can be running from the outside using docker exec tool ...
@@ -48,13 +30,9 @@ COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
-#add files and script that need to be use for this container
-#include conf file relate to service/daemon
-#script to execute after install configuration done ....
-COPY after_install.sh /sbin/after_install
-RUN chmod +x /sbin/after_install
-
 EXPOSE 80
 
+COPY start.sh /start.sh
+
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+CMD ["/start.sh"]
