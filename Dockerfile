@@ -9,6 +9,7 @@ FROM ubuntu:xenial
 RUN apt-get update && apt-get install -y -q apache2 \
                                             gdebi \
                                             wget \
+                                            locales \
                                       && cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
                                       && gdebi openemr-php7_5.0.0-1_all.deb \
                                       && update-locale \
