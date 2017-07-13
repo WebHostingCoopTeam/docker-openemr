@@ -6,7 +6,7 @@ if [ -f /etc/configured ]; then
   echo 'already configured'
 else
   #code that need to run only one time ....
-  a2enmod rewrite
+  #a2enmod rewrite
 
    #chown -R www-data:www-data /var/www
    #chown -R www-data:www-data /var/www/openemr/gacl/admin/templates_c
@@ -42,8 +42,8 @@ ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
 #change document root
 sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/openemr/' /etc/apache2/sites-available/000-default.conf
 # chown
-echo 'chown'
-chown -R www-data:www-data /var/www/openemr
+#echo 'chown'
+#chown -R www-data:www-data /var/www/openemr
 
 source /etc/apache2/envvars
 echo 'starting apache'
