@@ -8,9 +8,30 @@ FROM ubuntu:xenial
 #Installation of nesesary package/software for this containers...
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
-  gdebi \
-  wget \
-  locales \
+    gdebi \
+    wget \
+    locales \
+    mysql-server \
+    makepasswd \
+    libapache2-mod-php \
+    libdate-calc-perl \
+    libdbd-mysql-perl \
+    libdbi-perl \
+    libtiff-tools \
+    libwww-mechanize-perl \
+    libxml-parser-perl \
+    php \
+    php-cli \
+    php-gd \
+    php-xsl \
+    php-curl \
+    php-mcrypt \
+    php-soap \
+    php-json \
+    imagemagick \
+    php-gettext \
+    php-mbstring \
+    php-zip \
   && cd /tmp; wget -c http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
   && DEBIAN_FRONTEND=noninteractive gdebi openemr-php7_5.0.0-1_all.deb \
   && update-locale \
