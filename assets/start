@@ -42,7 +42,9 @@ ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
 #change document root
 sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/openemr/' /etc/apache2/sites-available/000-default.conf
 # chown
+echo 'chown'
 chown -R www-data:www-data /var/www/openemr
 
 source /etc/apache2/envvars
+echo 'starting apache'
 apache2ctl -D FOREGROUND 2>&1
