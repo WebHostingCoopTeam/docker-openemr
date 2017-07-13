@@ -48,8 +48,8 @@ COPY php.ini /etc/php5/apache2/php.ini
 COPY apache2.conf /etc/apache2/apache2.conf
 
 # RUN cp /var/log/cron/config /var/log/apache2/
-RUN chown -R www-data /var/log/apache2
-#&& chown -R www-data:www-data /var/www/openemr
+RUN chown -R www-data /var/log/apache2 \
+&& chown -R www-data:www-data /var/www/openemr
 
 #backup or keep data integrity ..
 ##scritp that can be running from the outside using docker exec tool ...
