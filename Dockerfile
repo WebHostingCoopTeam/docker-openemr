@@ -28,13 +28,13 @@ RUN chown -R www-data /var/log/apache2
 
 #backup or keep data integrity ..
 ##scritp that can be running from the outside using docker exec tool ...
-COPY backup.sh /sbin/backup
-RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
 EXPOSE 80
 
-COPY start.sh /start.sh
+COPY assets /assets
+RUN chmod +x /assets/backup \
+&& chmod +x /assets/start
 
 # Use baseimage-docker's init system.
-CMD ["/start.sh"]
+CMD ["/assets/start"]
