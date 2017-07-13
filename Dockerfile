@@ -25,6 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     php-gd \
     php-xsl \
     php-curl \
+    php-mysql \
     php-mcrypt \
     php-soap \
     php-json \
@@ -33,11 +34,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     php-mbstring \
     php-zip \
   && cd /tmp; wget -cq http://sourceforge.net/projects/openemr/files/OpenEMR%20Ubuntu_debian%20Package/5.0.0/openemr-php7_5.0.0-1_all.deb \
-  && DEBIAN_FRONTEND=noninteractive gdebi openemr-php7_5.0.0-1_all.deb \
+  && cd /tmp; DEBIAN_FRONTEND=noninteractive dpkg -i openemr-php7_5.0.0-1_all.deb \
   && update-locale \
+  #&&  DEBIAN_FRONTEND=noninteractive apt-get -yqq remove mysql-server \
   && DEBIAN_FRONTEND=noninteractive apt-get clean \
   && rm -rf /tmp/* /var/tmp/* \
   && rm -rf /var/lib/apt/lists/*
+
 
 #General variable definition....
 ##startup scripts
