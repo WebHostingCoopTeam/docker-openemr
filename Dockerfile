@@ -33,7 +33,7 @@ VOLUME /var/backups
 EXPOSE 80
 
 COPY assets /assets
-RUN chmod +x /assets/backup \
+RUN chmod +x /assets/backup.sh \
 && chmod +x /assets/start
 
 # Use baseimage-docker's init system.
