@@ -4,12 +4,15 @@ services:
     restart: always
     image: ${TAG}
     ports:
-    - 8080:80
+    - ${PORT}:80
     labels:
       io.rancher.sidekicks: openemr-data,db
     hostname: ${openemr_host}.${openemr_domain}
     environment:
-    - MYSQL_ROOT_PASSWORD=${DB_PASS}
+    - MYSQL_USER=${DB_USER}
+    - MYSQL_DATABASE=${DB_NAME}
+    - MYSQL_PASSWORD=${DB_USER_PASS}
+    - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
   db:
     restart: always
     image: mysql:5.7
@@ -18,7 +21,10 @@ services:
     labels:
       io.rancher.sidekicks: openemr-data
     environment:
-    - MYSQL_ROOT_PASSWORD=${DB_PASS}
+    - MYSQL_USER=${DB_USER}
+    - MYSQL_DATABASE=${DB_NAME}
+    - MYSQL_PASSWORD=${DB_USER_PASS}
+    - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
   openemr-data:
     labels:
       io.rancher.container.start_once: 'true'
