@@ -1,0 +1,6 @@
+Values:
+	TAG: 'webhostingcoopteam/openemr'
+	openemr_host: 'local'
+	openemr_domain: 'localdomain'
+	DB_PASS: 'replaceme123'
+	VOLUME_DRIVER: 'rancher-nfs'
