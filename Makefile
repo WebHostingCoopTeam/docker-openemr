@@ -1,4 +1,6 @@
-all: clean up
+all: docker-compose.yml down clean up
+
+run: all
 
 up: docker-compose.yml
 	@docker-compose up --build -d
