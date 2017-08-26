@@ -11,7 +11,7 @@ services:
     environment:
     - MYSQL_USER=${DB_USER}
     - MYSQL_DATABASE=${DB_NAME}
-    - MYSQL_PASSWORD=${DB_USER_PASS}
+    - MYSQL_PASSWORD=${DB_PASS}
     - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
   db:
     restart: always
@@ -23,7 +23,7 @@ services:
     environment:
     - MYSQL_USER=${DB_USER}
     - MYSQL_DATABASE=${DB_NAME}
-    - MYSQL_PASSWORD=${DB_USER_PASS}
+    - MYSQL_PASSWORD=${DB_PASS}
     - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
   openemr-data:
     labels:
