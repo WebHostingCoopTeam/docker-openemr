@@ -4,7 +4,7 @@ services:
     restart: always
     image: ${TAG}
     ports:
-    - 80:8080
+    - 8080:80
     labels:
       io.rancher.sidekicks: openemr-data,db
     hostname: ${openemr_host}.${openemr_domain}
