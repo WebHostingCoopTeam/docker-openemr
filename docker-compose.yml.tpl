@@ -28,4 +28,4 @@ services:
     image: busybox
     volume_driver: ${VOLUME_DRIVER}
     volumes:
-    - /var/lib/mysql:Z
+    - /var/lib/mysql
