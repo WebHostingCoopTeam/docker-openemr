@@ -1,6 +1,6 @@
 # docker-openemr
 
-Docker container for [OpenEMR 4.2.2][3]
+Docker container for [OpenEMR 5.0][3]
 
 "OpenEMR is a Free and Open Source electronic health records and medical practice management application that can run on Windows, Linux, Mac OS X, and many other platforms. OpenEMR is ONC certified and is one of the most popular open source electronic medical records in use today. OpenEMR is [supported][6] by a strong community of volunteers and [professionals][7] all with the common goal of making OpenEMR a superior alternative to its proprietary counterparts. The OpenEMR community is dedicated to guarding OpenEMR's status as a free, open source software solution for medical practices and is dedicated to maintaining a spirit of openness, kindness and cooperation."
 
@@ -16,6 +16,15 @@ To install docker in Ubuntu 15.04 use the commands:
  To install docker in other operating systems check [docker online documentation][4]
 
 ## Usage
+
+`make up`  
+
+If you like you can `make local.yml` and edit this file beforehand
+
+### Deprecated
+
+#### This is all old news should be deleted soon
+
 
 If you need a MySQL database you can link container :
 
